@@ -32,14 +32,12 @@ defaults
         errorfile 503 /etc/haproxy/errors/503.http
         errorfile 504 /etc/haproxy/errors/504.http
 
-listen balancer
-        # frontend http_front
+frontend www
         bind :80
-        bind *:443 ssl crt /etc/letsencrypt/live/www.techalgo.tech/fullchain.pem
-        mode http
-        default_backend http_back
+        bind *:443 ssl crt /etc/letsencrypt/live/www.tameysinc.tech/fullchain.pem
+        default_backend webservers
 
-        # backend http_back
+backend webservers
         balance roundrobin
-        server 1034-web-01 3.230.76.3:80 check
-        server 1034-web-02 34.207.211.58:80 check
+        server 145238-web-01 3.83.18.213:80 check
+        server 145238-web-02 54.82.133.141:80 check
